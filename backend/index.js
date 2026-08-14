@@ -1,6 +1,6 @@
 const io = require('socket.io')(process.env.PORT || 8000, {
     cors: {
-        origin: "*",
+        origin: "https://i-chat-kknci2w0q-ari-94d9.vercel.app",
         methods: ["GET", "POST"]
     }
 });
