@@ -1,4 +1,4 @@
-const socket = io('http://127.0.0.1:8000')
+const socket = io('https://ichat-app-g1c4.onrender.com/')
 
 const form = document.getElementById('input-container')
 const messageInput = document.getElementById('message-input')
