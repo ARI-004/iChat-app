@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I chat app</title>
+    
+    
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-title">iChat App</div>
+    </nav>
+    <div class="container">
+        <h2 class="encryption-info">Messages are end to end encrypted. Only people in this chat can see them.</h2>
+    </div>
+    <div action="#" class="input-container" id="input-container">
+        <input type="text" placeholder="Type your message here..." class="message-input" id="message-input"/>
+        <button type="submit" class="send-button" id="send-button">Send</button> 
+    </div>
+    <script src="http://127.0.0.1:8000/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
