@@ -1,27 +1,30 @@
-const io = require('socket.io')(process.env.PORT || 8000, {
+const http = require('http');
+const { Server } = require('socket.io');
+
+const server = http.createServer();
+
+const io = new Server(server, {
     cors: {
         origin: "https://i-chat-app-xi.vercel.app",
         methods: ["GET", "POST"]
     }
 });
 
+const PORT = process.env.PORT || 8000;
+
 const users = {};
 
 io.on('connection', socket => {
-
-    console.log("Connected:", socket.id);
+    console.log('CONNECTED:', socket.id);
 
     socket.on('new-user-joined', name => {
-        console.log("New user:", name);
-
         users[socket.id] = name;
 
         socket.broadcast.emit('user-joined', name);
     });
 
     socket.on('send', message => {
-        console.log("Message:", message);
-        console.log("From:", users[socket.id]);
+        console.log('MESSAGE:', message);
 
         socket.broadcast.emit('receive', {
             message: message,
@@ -30,10 +33,14 @@ io.on('connection', socket => {
     });
 
     socket.on('disconnect', () => {
-        console.log("Disconnected:", socket.id);
+        console.log('DISCONNECTED:', socket.id);
 
         socket.broadcast.emit('left', users[socket.id]);
 
         delete users[socket.id];
     });
+});
+
+server.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
